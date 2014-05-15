@@ -3,6 +3,6 @@ module.exports = (grunt) ->
     coffee:
       compile:
         files:
-          'lib/picklejuice.js': ['lib/world.coffee']
+          'lib/picklejuice.js': ['lib/picklejuice.coffee']
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.registerTask 'default', ['coffee']
