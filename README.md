@@ -1,4 +1,4 @@
-peppermill
+Picklejuice
 ==========
 
 Functional Testing Framework
