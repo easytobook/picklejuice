@@ -20,7 +20,9 @@
   },
   "private": true,
   "main": "lib/picklejuice.js",
-  "scripts": {},
+  "scripts": {
+    "install": "grunt"
+  },
   "author": "Jop de Klein",
   "license": "MIT"
 }
