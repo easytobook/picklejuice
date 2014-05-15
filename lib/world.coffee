@@ -1,19 +1,10 @@
 request = require 'request'
 
-World = (done, environment) ->
+WorldConstructor = (environment) ->
+  return unless environment
 
-  [type, browser, version] = environment.split(':') if environment?.length
-
-  type ?= 'local'
-  browser ?= 'firefox'
-  version ?= 'any'
-
-  # TODO: find a better way to pass explorer
-  browser = 'internet explorer' if browser == 'ie'
-
-  env = require("./env-#{type}")(browser, version)
-  @browser = require('webdriverjs').remote(env.webdriver)
-  @baseUrl = env.baseUrl
+  @browser = require('webdriverjs').remote(environment.webdriver)
+  @baseUrl = environment.baseUrl
 
   @defaultTimeout = 5000
 
@@ -21,7 +12,7 @@ World = (done, environment) ->
     @browser.init().url(url, done)
 
   @setStatus = (data, done) =>
-    if type is 'sauce'
+    if environment.type is 'sauce'
       @browser.session 'get', (err, rsp) ->
         return console.warn err if err
         console.log "SauceOnDemandSessionID=#{rsp.sessionId} job-name=#{data.name}"
@@ -29,8 +20,8 @@ World = (done, environment) ->
     else done()
 
   updateSession = (data, session, done) ->
-    host = "#{env.webdriver.user}:#{env.webdriver.key}@saucelabs.com"
-    path = "/rest/v1/#{env.webdriver.user}/jobs/#{session}"
+    host = "#{environment.webdriver.user}:#{environment.webdriver.key}@saucelabs.com"
+    path = "/rest/v1/#{environment.webdriver.user}/jobs/#{session}"
     url = "https://#{host}#{path}"
     body = JSON.stringify(data)
 
@@ -39,7 +30,5 @@ World = (done, environment) ->
       console.log rsp.statusCode
       done()
 
-  done() if done?
 
-
-module.exports = World
+module.exports = WorldConstructor
