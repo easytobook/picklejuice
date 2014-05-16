@@ -1,6 +1,6 @@
 request = require 'request'
 
-WorldConstructor = (environment) ->
+PickleJuice = (environment) ->
   return unless environment
 
   @browser = require('webdriverjs').remote(environment.webdriver)
@@ -8,16 +8,14 @@ WorldConstructor = (environment) ->
 
   @defaultTimeout = 5000
 
-  @visit = (url, done) =>
-    @browser.init().url(url, done)
-
+  # Used in hooks to set saucelabs status
   @setStatus = (data, done) =>
-    if environment.type is 'sauce'
-      @browser.session 'get', (err, rsp) ->
-        return console.warn err if err
-        console.log "SauceOnDemandSessionID=#{rsp.sessionId} job-name=#{data.name}"
-        updateSession(data, rsp.sessionId, done)
-    else done()
+    return done() unless environment.type is 'sauce'
+
+    @browser.session 'get', (err, rsp) ->
+      return console.warn err if err
+      console.log "SauceOnDemandSessionID=#{rsp.sessionId} job-name=#{data.name}"
+      updateSession(data, rsp.sessionId, done)
 
   updateSession = (data, session, done) ->
     host = "#{environment.webdriver.user}:#{environment.webdriver.key}@saucelabs.com"
@@ -31,4 +29,4 @@ WorldConstructor = (environment) ->
       done()
 
 
-module.exports = WorldConstructor
+module.exports = PickleJuice

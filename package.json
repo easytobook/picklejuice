@@ -13,16 +13,13 @@
     "grunt": "~0.4.1",
     "grunt-cli": "~0.1.9",
     "grunt-contrib-coffee": "~0.10.1",
-    "grunt-contrib-watch": "~0.5.3",
     "jit-grunt": "^0.5.0",
     "sanitize-filename": "~1.0.1",
     "time-grunt": "^0.3.1"
   },
   "private": true,
   "main": "lib/picklejuice.js",
-  "scripts": {
-    "install": "grunt"
-  },
+  "scripts": {},
   "author": "Jop de Klein",
   "license": "MIT"
 }
