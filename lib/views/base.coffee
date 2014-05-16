@@ -1,12 +1,13 @@
 _ = require('underscore')
 
+
 class BaseView
   constructor: (@world) ->
     # FIXME: Sometimes the constructor is called without arguments
     if @world?.browser?
       @browser = @world.browser
 
-  @visit = (url, done) =>
+  visit: (url, done) ->
     @browser.init().url(url, done)
 
   open: (done) ->
@@ -21,7 +22,7 @@ class BaseView
       if @browser.sessionId
         waitIfNeeded()
       else
-        @world.visit(@world.baseUrl, waitIfNeeded)
+        @visit(@world.baseUrl, waitIfNeeded)
 
   waitIfNeeded: (done) ->
     return done() unless @waitFor
