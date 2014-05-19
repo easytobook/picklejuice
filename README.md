@@ -4,9 +4,11 @@ Picklejuice is part of a larger ecosystem for end-to-end testing, in which Pickl
 
 Picklejuice provides the following:
 
-* picklejuice: mixin for your 'World' context object, required for all other picklejuice functionality
+* picklejuice: mixin for your 'World' context object, required for all other picklejuice components
 * hooks: generic before- and after hooks
 * views: generic view definitions
+
+![Picklejuice overview](docs/picklejuice.png)
 
 ### Initialization
 In your World context, mixin the picklejuice object as follows:
@@ -26,10 +28,10 @@ World = (done, environment) ->
   done() if done?
 ```
 
-We use a modified version of cucumber which allow us to pass an environment object via the CLI so we can switch based on our grunt test targets. See https://github.com/easytobook/cucumber-js/commit/d6256155e9ad7657c64c6d5b2c2b5bb48aee85b8.
+We use a modified version of cucumber which allow us to pass an environment object via the CLI so we can switch environments based on our grunt test targets. See https://github.com/easytobook/cucumber-js/commit/d6256155e9ad7657c64c6d5b2c2b5bb48aee85b8.
+In the previous example we use an environment object, see [examples/env-local.coffee](examples/env-local.coffee) for an example.
 
-
-Then when writing your view definitions, import the Picklejuice baseView:
+When writing your view definitions, import the Picklejuice baseView:
 ```
 BaseView = require 'picklejuice/lib/views/base'
 
@@ -39,6 +41,6 @@ class HomeView extends BaseView
 ```
 
 
-#### Environment specifications
-In the previous example we use an environment object, see (../examples/local.env) for an example. The grunt-picklejuice task allows you to specify which environment to use per grunt target.
+#### Grunt integration
+The grunt-picklejuice task allows you to specify which environment to use per grunt target. You can set up multiple grunt targets to support running the tests locally, on a CI server or on Saucelabs for example.
 
