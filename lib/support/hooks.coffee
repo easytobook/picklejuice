@@ -1,11 +1,18 @@
 sanitize = require('sanitize-filename')
 
+isScenario = (scenario) ->
+  return scenario.payloadType is 'scenario'
+
 Hooks = ->
   @Before (scenario, done) ->
+    return done() unless isScenario(scenario)
+
     @passed = true
     done()
 
   @After (scenario, done) ->
+    return done() unless isScenario(scenario)
+
     scenario.getSteps().syncForEach (step) =>
       isFailed = step.stepResult?.isFailed()
       @passed = false if isFailed

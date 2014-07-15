@@ -42,5 +42,5 @@ class HomeView extends BaseView
 
 
 #### Grunt integration
-The grunt-picklejuice task allows you to specify which environment to use per grunt target. You can set up multiple grunt targets to support running the tests locally, on a CI server or on Saucelabs for example.
-
+In order to run Picklejuice from grunt you'll need grunt-cucumberjs and grunt-runselenium.
+You can set up multiple grunt targets to support running the tests locally, on a CI server or on Saucelabs for example.
