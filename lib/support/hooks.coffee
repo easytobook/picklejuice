@@ -19,6 +19,7 @@ Hooks = ->
     data =
       passed: @passed
       name: scenario.getName()
+    console.log "Passed: " + data.passed
     @setStatus data, =>
       @browser.end(done) if @browser?
 
