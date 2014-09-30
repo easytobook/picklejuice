@@ -1,5 +1,5 @@
 # Picklejuice
-Functional Testing Framework based on Cucumber.js and WebdriverJS, written in CoffeeScript. Picklejuice is intended to run locally or on your CI and supports Saucelabs for running on multiple platforms.
+Functional Testing Framework based on Cucumber.js and WebdriverJS (now WebdriverIO: https://github.com/webdriverio/webdriverio), written in CoffeeScript. Picklejuice is intended to run locally or on your CI and supports Saucelabs for running on multiple platforms.
 Picklejuice is part of a larger ecosystem for end-to-end testing, in which Picklejuice provides the re-usable classes for the Cucumber.js infrastructure at Easytobook.com.
 
 Picklejuice provides the following:
