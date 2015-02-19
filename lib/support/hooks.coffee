@@ -19,6 +19,9 @@ Hooks = ->
     data =
       passed: @passed
       name: scenario.getName()
+    if @vendorView?
+      data.id = @vendorView.testId
+      data.failureCause = @vendorView.failureCause
     console.log "Passed: " + data.passed
     @setStatus data, =>
       @browser.end(done) if @browser?
