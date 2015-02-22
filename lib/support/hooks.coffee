@@ -19,9 +19,9 @@ Hooks = ->
     data =
       passed: @passed
       name: scenario.getName()
-    if @vendorView?
-      data.valueAppsMeta = @vendorView.meta
-      data.name = data.name + " ID " + @vendorView.meta.testId
+    if @meta?
+      data.name = data.name + " ID " + @meta.testId
+      data.meta = @meta
     console.log "Passed: " + data.passed
     @setStatus data, =>
       @browser.end(done) if @browser?
