@@ -21,8 +21,9 @@ Hooks = ->
       name: scenario.getName()
     if @meta?
       data.name = data.name + " ID " + @meta.testId
-      data.meta = @meta
-    console.log "Passed: " + data.passed
+      for k,v of @meta
+        data[k] = v
+      console.log data
     @setStatus data, =>
       @browser.end(done) if @browser?
 
