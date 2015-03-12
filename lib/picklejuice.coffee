@@ -3,7 +3,7 @@ request = require 'request'
 PickleJuice = (environment) ->
   return unless environment
 
-  @browser = require('webdriverjs').remote(environment.webdriver)
+  @browser = require('webdriverio').remote(environment.webdriver)
   @baseUrl = environment.baseUrl
 
   @defaultTimeout = 5000
