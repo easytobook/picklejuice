@@ -20,6 +20,7 @@ Hooks = ->
       passed: @passed
       name: scenario.getName()
     if @meta?
+      console.log @meta
       data.name = data.name + " ID " + @meta.testId
       data["custom-data"] = @meta
     @setStatus data, =>
